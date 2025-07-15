@@ -48,7 +48,7 @@ export default async function handler(req, res) {
     console.log('Greeting public_id:', greetingResult.public_id);
 
     // Step 2: Create concatenation using proper transformation URL
-    const BASE_SCRIPT_PUBLIC_ID = 'YOUR_BASE_SCRIPT_PUBLIC_ID'; // Upload your base script audio file to Cloudinary and replace this
+    const BASE_SCRIPT_PUBLIC_ID = '2025-07-15_16.55.08_oxotfl'; // Upload your base script audio file to Cloudinary and replace this
     
     // Build the concatenation URL: Add fade and slight volume decrease to greeting
     const concatenationUrl = `https://res.cloudinary.com/df12eghmr/video/upload/l_video:${greetingResult.public_id},e_volume:85,e_fade:200,so_0,eo_${Math.ceil(greetingResult.duration)}/fl_layer_apply/f_mp3/${BASE_SCRIPT_PUBLIC_ID}.mp3`;
