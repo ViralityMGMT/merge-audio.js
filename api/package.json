@@ -1,0 +1,21 @@
+{
+  "name": "n8n-audio-merger",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Audio merging API for N8N workflows",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "cloudinary": "^1.41.0",
+    "next": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
