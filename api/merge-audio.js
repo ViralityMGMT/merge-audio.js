@@ -27,7 +27,7 @@ export default async function handler(req, res) {
 
     console.log('Uploading greeting...');
 
-    const greetingResponse = await fetch(`https://api.cloudinary.com/v1_1/df12eghmr/video/upload`, {
+    const greetingResponse = await fetch('https://api.cloudinary.com/v1_1/df12eghmr/video/upload', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(greetingPayload)
@@ -48,7 +48,7 @@ export default async function handler(req, res) {
     console.log('Greeting public_id:', greetingResult.public_id);
 
     // Step 2: Create concatenation using proper transformation URL
-    const BASE_SCRIPT_PUBLIC_ID = '2025-07-15_16.55.08_oxotfl'; // Upload your base script audio file to Cloudinary and replace this
+    const BASE_SCRIPT_PUBLIC_ID = '2025-07-15_16.55.08_oxotfl';
     
     // Build the concatenation URL: Add fade and slight volume decrease to greeting
     const concatenationUrl = `https://res.cloudinary.com/df12eghmr/video/upload/l_video:${greetingResult.public_id},e_volume:85,e_fade:200,so_0,eo_${Math.ceil(greetingResult.duration)}/fl_layer_apply/f_mp3/${BASE_SCRIPT_PUBLIC_ID}.mp3`;
@@ -66,7 +66,7 @@ export default async function handler(req, res) {
 
     console.log('Creating final concatenated audio...');
 
-    const finalResponse = await fetch(`https://api.cloudinary.com/v1_1/df12eghmr/video/upload`, {
+    const finalResponse = await fetch('https://api.cloudinary.com/v1_1/df12eghmr/video/upload', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(finalPayload)
@@ -80,7 +80,7 @@ export default async function handler(req, res) {
       console.log('Trying direct concatenation URL...');
       return res.status(200).json({
         status: 'success',
-        mergedAudioUrl: concatenationUrl, // Return the transformation URL directly
+        mergedAudioUrl: concatenationUrl,
         publicId: `${sanitizedName}_direct_${timestamp}`,
         fileName: `${sanitizedName}_voice_note_${timestamp}.mp3`,
         duration: 'calculated_on_delivery',
@@ -130,34 +130,5 @@ export default async function handler(req, res) {
       error: error.message,
       message: 'Failed to merge audio files'
     });
-  }
-}
-
-Commit the file:
-Scroll down to "Commit new file"
-Commit message: Add audio merger API endpoint
-Click "Commit new file"
-C. Create Package.json
-Click "Add file" → "Create new file"
-File name: package.json
-Copy and paste this EXACTLY:
-{
-  "name": "n8n-audio-merger",
-  "version": "1.0.0",
-  "description": "Audio merging API for N8N workflows",
-  "main": "index.js",
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "cloudinary": "^1.41.0",
-    "next": "^13.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "engines": {
-    "node": ">=16.0.0"
   }
 }
